@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-    <header class="flex justify-between border-b border-slate-300 px-10 py-8">
+    <header class="flex justify-between border-b border-slate-100 px-10 py-8">
 
 <div class="flex items-center gap-4">
   <img src="/logo.png" alt="Logo" class="w-10" />
