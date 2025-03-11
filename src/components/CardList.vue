@@ -8,7 +8,7 @@ const onClickAdd = () => {
   alert('Добавлено!')
 }
 </script>
-Привет
+
 <template>
   <div class="grid grid-cols-4 gap-5">
     <Card
