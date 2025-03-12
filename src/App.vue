@@ -7,6 +7,17 @@ import axios from 'axios'
 
 const items = ref([])
 
+const drawerOpen = ref(false);
+
+const closeDrawer = () => {
+  drawerOpen.value = false;
+}
+
+const openDrawer = () => {
+  drawerOpen.value = true;
+}
+
+
 const filters = reactive({
   sortBy: 'title',
   searchQuery: '',
@@ -43,9 +54,25 @@ const fetchFavorites = async () => {
 }
 
 const addToFavorite = async (item) => {
-  item.isFavorite = !item.isFavorite
+  try {
+    if (!item.isFavorite) {
+      const obj = {
+        parentId: item.id,
+      }
 
-  console.log(item)
+      item.isFavorite = true
+
+      const { data } = await axios.post('https://9e0cda389b3bad78.mokky.dev/favorites', obj)
+
+      item.favoriteId = data.id
+    } else {
+      item.isFavorite = false
+      await axios.delete(`https://9e0cda389b3bad78.mokky.dev/favorites/${item.favoriteId}`)
+      item.favoriteId = null
+    }
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 const fetchItems = async () => {
@@ -64,6 +91,7 @@ const fetchItems = async () => {
     items.value = data.map((obj) => ({
       ...obj,
       isFavorite: false,
+      favoriteId: null,
       isAdded: false,
     }))
   } catch (err) {
@@ -77,13 +105,18 @@ onMounted(async () => {
 })
 watch(filters, fetchItems)
 
-provide('addToFavorite', addToFavorite)
+provide('cartActions', {
+  closeDrawer,
+  openDrawer
+})
+
+
 </script>
 
 <template>
-  <!-- <Drawer /> -->
+  <Drawer v-if="drawerOpen"/>
   <div class="bg-white w-4/5 m-auto rounded-xl shadow-xl mt-14">
-    <Header />
+    <Header @open-drawer="openDrawer" />
     <div class="p-10">
       <div class="flex justify-between items-center">
         <h2 class="text-3xl font-bold mb-8">Все кроссовки</h2>
@@ -108,8 +141,9 @@ provide('addToFavorite', addToFavorite)
           </div>
         </div>
       </div>
+
       <div class="mt-10">
-        <CardList :items="items" />
+        <CardList :items="items" @add-to-favorite="addToFavorite" />
       </div>
     </div>
   </div>
