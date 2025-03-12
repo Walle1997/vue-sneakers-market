@@ -1,7 +1,4 @@
-<!-- eslint-disable vue/multi-word-component-names -->
-// eslint-disable-next-line vue/multi-word-component-names
 <script setup>
-
 defineProps({
   id: Number,
   imageUrl: String,
@@ -10,9 +7,8 @@ defineProps({
   isFavorite: Boolean,
   isAdded: Boolean,
   onClickFavorite: Function,
-  onClickAdd: Function
+  onClickAdd: Function,
 })
-
 </script>
 
 <template>

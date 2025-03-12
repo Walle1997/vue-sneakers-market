@@ -1,7 +1,6 @@
 <script setup>
-import Card from './Card.vue';
-import { inject } from 'vue';
-
+import Card from './Card.vue'
+import { inject } from 'vue'
 
 defineProps({
   items: Array,
@@ -10,8 +9,7 @@ const onClickAdd = () => {
   alert('Добавлено!')
 }
 
-const addToFavorite = inject('addToFavorite');
-
+const addToFavorite = inject('addToFavorite')
 </script>
 
 <template>

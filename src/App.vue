@@ -21,14 +21,13 @@ const onChangeSearchInput = (event) => {
 }
 
 const fetchFavorites = async () => {
-
   try {
     const { data: favorites } = await axios.get('https://9e0cda389b3bad78.mokky.dev/favorites')
 
-    items.value = items.value.map(item => {
-      const favorite = favorites.find(favorite => favorite.parentId === item.id);
+    items.value = items.value.map((item) => {
+      const favorite = favorites.find((favorite) => favorite.parentId === item.id)
 
-      if(!favorite) {
+      if (!favorite) {
         return item
       }
 
@@ -37,18 +36,16 @@ const fetchFavorites = async () => {
         isFavorite: true,
         favoriteId: favorite.id,
       }
-
-    });
+    })
   } catch (err) {
     console.log(err)
   }
 }
 
 const addToFavorite = async (item) => {
-  item.isFavorite =  !item.isFavorite
+  item.isFavorite = !item.isFavorite
 
-  console.log(item);
-
+  console.log(item)
 }
 
 const fetchItems = async () => {
@@ -67,21 +64,20 @@ const fetchItems = async () => {
     items.value = data.map((obj) => ({
       ...obj,
       isFavorite: false,
-      isAdded: false
-    }));
+      isAdded: false,
+    }))
   } catch (err) {
     console.log(err)
   }
 }
 
 onMounted(async () => {
-  await fetchItems();
-  await fetchFavorites();
+  await fetchItems()
+  await fetchFavorites()
 })
 watch(filters, fetchItems)
 
-provide('addToFavorite', addToFavorite);
-
+provide('addToFavorite', addToFavorite)
 </script>
 
 <template>
