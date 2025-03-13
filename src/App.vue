@@ -1,15 +1,20 @@
 <script setup>
-import { onMounted, reactive, ref, provide, watch } from 'vue'
+import { onMounted, reactive, ref, provide, watch, computed } from 'vue'
 import Header from './components/Header.vue'
 import CardList from './components/CardList.vue'
 import Drawer from './components/Drawer.vue'
 import axios from 'axios'
 
 const items = ref([])
-
-const cart = ref([])
+ const cart = ref([])
 
 const drawerOpen = ref(false)
+
+const totalPrice = computed(
+  () => cart.value.reduce((acc, item) => acc + item.price, 0)
+);
+
+const vatPrice = computed(() => Math.round ((totalPrice.value * 5) / 100));
 
 const closeDrawer = () => {
   drawerOpen.value = false
@@ -32,6 +37,22 @@ const addToCart = (item) => {
 const removeFromCart = (item) => {
   cart.value.splice(cart.value.indexOf(item), 1)
   item.isAdded = false
+}
+
+const createOrder = async () => {
+  try {
+    const { data } = await axios.post('https://9e0cda389b3bad78.mokky.dev/orders', {
+      items: cart,
+      totalPrice: totalPrice.value,
+    })
+
+    cart.value = []
+
+    return data;
+
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 const onClickAddPlus = (item) => {
@@ -134,9 +155,9 @@ provide('cart', {
 </script>
 
 <template>
-  <Drawer v-if="drawerOpen" />
+  <Drawer v-if="drawerOpen" :total-price="totalPrice" :vat-price="vatPrice" @create-order="createOrder"/>
   <div class="bg-white w-4/5 m-auto rounded-xl shadow-xl mt-14">
-    <Header @open-drawer="openDrawer" />
+    <Header :total-price="totalPrice" @open-drawer="openDrawer" />
     <div class="p-10">
       <div class="flex justify-between items-center">
         <h2 class="text-3xl font-bold mb-8">Все кроссовки</h2>
