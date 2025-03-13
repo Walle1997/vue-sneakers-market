@@ -7,21 +7,40 @@ import axios from 'axios'
 
 const items = ref([])
 
-const drawerOpen = ref(false);
+const cart = ref([])
+
+const drawerOpen = ref(false)
 
 const closeDrawer = () => {
-  drawerOpen.value = false;
+  drawerOpen.value = false
 }
 
 const openDrawer = () => {
-  drawerOpen.value = true;
+  drawerOpen.value = true
 }
-
 
 const filters = reactive({
   sortBy: 'title',
   searchQuery: '',
 })
+
+const addToCart = (item) => {
+  cart.value.push(item)
+  item.isAdded = true
+}
+
+const removeFromCart = (item) => {
+  cart.value.splice(cart.value.indexOf(item), 1)
+  item.isAdded = false
+}
+
+const onClickAddPlus = (item) => {
+  if (!item.isAdded) {
+    addToCart(item)
+  } else {
+    removeFromCart(item)
+  }
+}
 
 const onChangeSelect = (event) => {
   filters.sortBy = event.target.value
@@ -105,16 +124,17 @@ onMounted(async () => {
 })
 watch(filters, fetchItems)
 
-provide('cartActions', {
+provide('cart', {
+  cart,
   closeDrawer,
-  openDrawer
+  openDrawer,
+  addToCart,
+  removeFromCart,
 })
-
-
 </script>
 
 <template>
-  <Drawer v-if="drawerOpen"/>
+  <Drawer v-if="drawerOpen" />
   <div class="bg-white w-4/5 m-auto rounded-xl shadow-xl mt-14">
     <Header @open-drawer="openDrawer" />
     <div class="p-10">
@@ -143,7 +163,7 @@ provide('cartActions', {
       </div>
 
       <div class="mt-10">
-        <CardList :items="items" @add-to-favorite="addToFavorite" />
+        <CardList :items="items" @add-to-favorite="addToFavorite" @add-to-cart="onClickAddPlus" />
       </div>
     </div>
   </div>
