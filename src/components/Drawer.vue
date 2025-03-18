@@ -1,12 +1,14 @@
 <script setup>
 import DrawerHead from './DrawerHead.vue'
 import CartItemList from './CartItemList.vue'
+import InfoBlock from './infoBlock.vue'
 
 const emit = defineEmits(['createOrder'])
 
 defineProps({
   totalPrice: Number,
-  vatPrice: Number
+  vatPrice: Number,
+  buttonDisabled: Boolean,
 })
 </script>
 
@@ -14,6 +16,8 @@ defineProps({
   <div class="fixed top-0 left-0 h-full w-full bg-black z-10 opacity-70"></div>
   <div class="bg-white w-96 h-full fixed right-0 top-0 z-20 p-8">
     <DrawerHead />
+
+    <InfoBlock title="Корзина пуста" description="Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ." image-url="/package-icon.png" />
     <CartItemList />
 
     <div class="flex flex-col gap-4 mt-7">
@@ -28,7 +32,7 @@ defineProps({
         <b>{{ vatPrice }} ₽</b>
       </div>
       <button
-        :disabled="totalPrice"
+        :disabled="buttonDisabled"
         @click="() => emit('createOrder')"
         class="mt-4 transition bg-lime-500 w-full rounded-xl py-3 text-white disabled:bg-slate-400 hover:bg-lime-600 active:bg-lime-700 cursor-pointer"
       >
