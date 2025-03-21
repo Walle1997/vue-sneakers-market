@@ -2,7 +2,7 @@
 
 ## Тестовое задание с FIGMA
 
-### <div align="center">Ссылка на макет FIGMA 🎨 <a href="https://www.figma.com/file/fw0toTyXMwM1y4WIe0YFrJ/React-Sneakers">🎨</a></div>
+### <div align="center">Ссылка на макет FIGMA 🎨 <a href="https://www.figma.com/file/fw0toTyXMwM1y4WIe0YFrJ/React-Sneakers">✅</a></div>
 
 #### Суть задания
 
@@ -30,9 +30,9 @@
 
 #### Ссылки на json-товаров👟
 
-<div align="left">Orders <a href="https://9e0cda389b3bad78.mokky.dev/orders"></a></div>
-<div align="left">Favorites <a href="https://9e0cda389b3bad78.mokky.dev/favorites"></a></div>
-<div align="left">Items <a href="https://9e0cda389b3bad78.mokky.dev/items"></a></div>
+<div align="left">Orders <a href="https://9e0cda389b3bad78.mokky.dev/orders">✅</a></div>
+<div align="left">Favorites <a href="https://9e0cda389b3bad78.mokky.dev/favorites">✅</a></div>
+<div align="left">Items <a href="https://9e0cda389b3bad78.mokky.dev/items">✅</a></div>
 
 
 ## Project Setup
