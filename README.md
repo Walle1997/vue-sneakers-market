@@ -1,8 +1,6 @@
-# <div>Создание интернет-магазина кроссовок (front+back) на Vue.js с FIGMA</div>
+# <div align="center">Создание интернет-магазина кроссовок (front+back) на Vue.js с FIGMA</div>
 
-## Тестовое задание с FIGMA
-
-### <div align="center">Ссылка на макет FIGMA 🎨 <a href="https://www.figma.com/file/fw0toTyXMwM1y4WIe0YFrJ/React-Sneakers">✅</a></div>
+### <div>Ссылка на макет FIGMA 🎨 <a href="https://www.figma.com/file/fw0toTyXMwM1y4WIe0YFrJ/React-Sneakers">✅</a></div>
 
 #### Суть задания
 
