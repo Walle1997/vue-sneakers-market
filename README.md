@@ -1,5 +1,5 @@
 # <div align="center">Создание интернет-магазина кроссовок (front+back) на Vue.js с FIGMA</div>
-## <div align="center">Посетить сайт можно здесь 🫵🏼 <a href="https://vue-sneakers-market-1wpsmcjz1-farids-projects-eaf9b1b4.vercel.app/">🫵🏼</a></div>
+## <div align="center">Посетить сайт можно здесь <a href="https://vue-sneakers-market-1wpsmcjz1-farids-projects-eaf9b1b4.vercel.app/">👨‍💻</a></div>
 
 ### <div>Ссылка на макет FIGMA 🎨 <a href="https://www.figma.com/file/fw0toTyXMwM1y4WIe0YFrJ/React-Sneakers">✅</a></div>
 
